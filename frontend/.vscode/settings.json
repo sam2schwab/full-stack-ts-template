@@ -1,0 +1,24 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "css.validate": false,
+    "[javascript]": {
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": true
+        }
+    },
+    "[typescript]": {
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": true
+        }
+    },
+    "[postgres]": {
+        "editor.defaultFormatter": "bradymholt.pgformatter"
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "stylelint.vscode-stylelint",
+        "editor.codeActionsOnSave": {
+            "source.fixAll.stylelint": true
+        }
+    }
+}

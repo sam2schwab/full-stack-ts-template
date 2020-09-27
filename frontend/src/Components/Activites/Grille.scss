@@ -1,0 +1,33 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+.card-img-top {
+  object-fit: cover;
+}
+
+.button-over-image {
+  padding: 0.25em;
+  z-index: 2;
+
+  div {
+    display: inline-block;
+    max-width: 0;
+    overflow: hidden;
+    transition: max-width 0.5s;
+    white-space: nowrap;
+  }
+
+  &:hover div {
+    max-width: 7em;
+  }
+}
+
+.indicateur-type-grille {
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+
+  svg {
+    filter: drop-shadow(0 0 3px $dark);
+  }
+}

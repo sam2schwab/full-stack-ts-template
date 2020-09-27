@@ -1,26 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './Components/Home';
+import Navbar from './Components/Navbar';
+import NotFound from './Components/NotFound';
+import Activites from './Components/Activites/Index';
+import { Container } from 'react-bootstrap';
+import Reservation from './Components/Reservation/Reservation';
+import { QueryCache, ReactQueryCacheProvider } from 'react-query';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const queryCache = new QueryCache();
+
+function App(): React.ReactElement {
+    return (
+        <ReactQueryCacheProvider queryCache={queryCache}>
+            <Router>
+                <Navbar />
+                <Container fluid className="main-container">
+                    <Switch>
+                        <Route path="/" exact>
+                            <Home />
+                        </Route>
+                        <Route path="/activites">
+                            <Activites />
+                        </Route>
+                        <Route path="/reservation">
+                            <Reservation />
+                        </Route>
+                        <Route>
+                            <NotFound />
+                        </Route>
+                    </Switch>
+                </Container>
+            </Router>
+        </ReactQueryCacheProvider>
+    );
 }
 
 export default App;
