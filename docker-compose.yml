@@ -10,8 +10,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
   backend:
     labels:
+      - traefik.http.middlewares.backend-stripprefix.stripprefix.prefixes=/api
+      - traefik.http.routers.backend.middlewares=backend-stripprefix@docker
       - traefik.http.routers.backend.rule=PathPrefix(`/api`)
-      - traefik.http.services.backend.loadbalancer.server.port=3001
+      - traefik.http.services.backend.loadbalancer.server.port=3000
     build:
       context: .
       dockerfile: Dockerfile-backend

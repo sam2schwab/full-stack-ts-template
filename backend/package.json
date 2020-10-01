@@ -1,72 +1,67 @@
 {
-    "name": "backend",
-    "version": "0.0.0",
-    "description": "description of the application",
-    "license": "MIT",
-    "repository": {},
-    "scripts": {
-        "build:app": "foal rmdir build/backend/src/app && copy-cli \"src/**/*.html\" build && tsc -p tsconfig.app.json",
-        "build:app:w": "tsc -p tsconfig.app.json -w",
-        "start": "node ./build/backend/src/index.js",
-        "start:w": "supervisor -w ./build --no-restart-on error ./build/backend/src/index.js",
-        "develop": "npm run build:app && concurrently \"npm run build:app:w\" \"npm run start:w\"",
-        "build:test": "foal rmdir build && copy-cli \"src/**/*.html\" build && tsc -p tsconfig.test.json",
-        "build:test:w": "tsc -p tsconfig.test.json -w",
-        "start:test": "mocha --file \"./build/backend/src/test.js\" \"./build/**/*.spec.js\"",
-        "start:test:w": "mocha --file \"./build/backend/src/test.js\" -w \"./build/**/*.spec.js\"",
-        "test": "npm run build:test && concurrently \"npm run build:test:w\" \"npm run start:test:w\"",
-        "build:e2e": "foal rmdir build/backend/src/e2e && copy-cli \"src/**/*.html\" build && tsc -p tsconfig.e2e.json",
-        "build:e2e:w": "tsc -p tsconfig.e2e.json -w",
-        "start:e2e": "mocha --timeout 4000 --file \"./build/backend/src/e2e.js\" \"./build/backend/src/e2e/**/*.js\"",
-        "start:e2e:w": "mocha --file \"./build/backend/src/e2e.js\" -w \"./build/backend/src/e2e/**/*.js\"",
-        "e2e": "npm run build:e2e && concurrently \"npm run build:e2e:w\" \"npm run start:e2e:w\"",
-        "build:scripts": "foal rmdir build/backend/src/scripts && tsc -p tsconfig.scripts.json",
-        "build:scripts:w": "tsc -p tsconfig.scripts.json -w",
-        "lint": "eslint --ext ts src",
-        "lint:fix": "eslint --ext ts --fix src",
-        "build:migrations": "foal rmdir build/backend/src/migrations && tsc -p tsconfig.migrations.json",
-        "migration:generate": "./node_modules/.bin/typeorm migration:generate",
-        "migration:run": "./node_modules/.bin/typeorm migration:run",
-        "migration:revert": "./node_modules/.bin/typeorm migration:revert"
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "nest build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
+  },
+  "dependencies": {
+    "@nestjs/common": "^7.0.0",
+    "@nestjs/core": "^7.0.0",
+    "@nestjs/platform-express": "^7.0.0",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "rxjs": "^6.5.4"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^7.0.0",
+    "@nestjs/schematics": "^7.0.0",
+    "@nestjs/testing": "^7.0.0",
+    "@types/express": "^4.17.3",
+    "@types/jest": "26.0.10",
+    "@types/node": "^13.9.1",
+    "@types/supertest": "^2.0.8",
+    "@typescript-eslint/eslint-plugin": "3.9.1",
+    "@typescript-eslint/parser": "3.9.1",
+    "eslint": "7.7.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "jest": "26.4.2",
+    "prettier": "^1.19.1",
+    "supertest": "^4.0.2",
+    "ts-jest": "26.2.0",
+    "ts-loader": "^6.2.1",
+    "ts-node": "9.0.0",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.7.4"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
     },
-    "engines": {
-        "node": ">=8"
-    },
-    "dependencies": {
-        "@foal/core": "^1.11.1",
-        "@foal/typeorm": "^1.11.1",
-        "source-map-support": "^0.5.19",
-        "sqlite3": "^5.0.0",
-        "typeorm": "0.2.28"
-    },
-    "devDependencies": {
-        "@types/express": "^4.17.8",
-        "@types/mocha": "^8.0.3",
-        "@types/node": "^14.11.2",
-        "@types/supertest": "^2.0.10",
-        "@typescript-eslint/eslint-plugin": "~4.3.0",
-        "@typescript-eslint/parser": "~4.3.0",
-        "concurrently": "^5.3.0",
-        "copy": "^0.3.2",
-        "eslint": "^7.10.0",
-        "eslint-config-prettier": "^6.12.0",
-        "eslint-plugin-prettier": "^3.1.4",
-        "husky": "^4.3.0",
-        "lint-staged": "^10.4.0",
-        "mocha": "^8.1.3",
-        "prettier": "^2.1.2",
-        "supertest": "^5.0.0",
-        "supervisor": "^0.12.0",
-        "typescript": "~4.0.3"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
-    "lint-staged": {
-        "*.ts": [
-            "eslint --fix"
-        ]
-    }
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
 }

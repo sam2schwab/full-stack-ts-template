@@ -4,12 +4,11 @@ RUN mkdir -p /home/node/common/ && chown -R node:node /home/node/common/
 WORKDIR /home/node
 COPY ./backend/package*.json ./backend/
 COPY ./common/package*.json ./common/
-RUN npm install -g @foal/cli
 USER node
 RUN npm --prefix ./backend install
 RUN npm --prefix ./common install
 COPY --chown=node:node ./backend/ ./backend/
 COPY --chown=node:node ./common/ ./common/
-EXPOSE 3001
+EXPOSE 3000
 WORKDIR /home/node/backend
-CMD [ "npm", "run", "develop" ]
+CMD [ "npm", "run", "start" ]

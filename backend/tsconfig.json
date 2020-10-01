@@ -1,15 +1,18 @@
 {
     "compilerOptions": {
-        "outDir": "build",
-        "sourceMap": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "noImplicitAny": true,
-        "strictPropertyInitialization": false,
         "module": "commonjs",
+        "declaration": true,
+        "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
         "target": "es2017",
+        "sourceMap": true,
+        "outDir": "./dist",
+        "baseUrl": "./",
+        "incremental": true,
         "rootDir": "..",
-        "lib": ["es2017", "dom"]
+        "noImplicitAny": true
     },
     "include": ["src/**/*.ts", "../common/src/**/*.ts"]
 }
