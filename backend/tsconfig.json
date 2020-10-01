@@ -8,6 +8,7 @@
         "strictPropertyInitialization": false,
         "module": "commonjs",
         "target": "es2017",
+        "rootDir": "..",
         "lib": ["es2017", "dom"]
     },
     "include": ["src/**/*.ts", "../common/src/**/*.ts"]
