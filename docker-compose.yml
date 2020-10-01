@@ -10,9 +10,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
   backend:
     labels:
-      - traefik.http.middlewares.backend-stripprefix.stripprefix.prefixes=/api
       - traefik.http.routers.backend.rule=PathPrefix(`/api`)
-      - traefik.http.routers.backend.middlewares=backend-stripprefix@docker
       - traefik.http.services.backend.loadbalancer.server.port=3001
     build: 
       context: .
@@ -25,16 +23,10 @@ services:
       - PGDATABASE=${PGDATABASE:-postgres}
       - PGPORT=${PGPORT:-5432}
     volumes:
-      - ./backend:/home/node/app
+      - ./backend:/home/node/backend
       - ./common:/home/node/common
-      - node_modules_backend:/home/node/app/node_modules
-      - node_modules_common:/home/node/common/node_modules
-  database:
-    image: postgres:12
-    environment:
-      - POSTGRES_PASSWORD=!cYGyYSC_%6pDa7/
-    volumes:
-      - db_data:/var/lib/postrgesql/data
+      - /home/node/backend/node_modules
+      - /home/node/common/node_modules
   frontend:
     labels:
       - traefik.http.routers.frontend.rule=PathPrefix(`/`)
@@ -46,13 +38,7 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
     volumes:
-      - ./frontend:/home/node/app
+      - ./frontend:/home/node/frontend
       - ./common:/home/node/common
-      - node_modules_frontend:/home/node/app/node_modules
-      - node_modules_common:/home/node/common/node_modules
-
-volumes:
-  db_data:
-  node_modules_backend:
-  node_modules_frontend:
-  node_modules_common:
+      - /home/node/frontend/node_modules
+      - /home/node/common/node_modules

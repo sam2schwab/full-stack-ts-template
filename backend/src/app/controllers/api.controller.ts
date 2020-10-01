@@ -1,10 +1,8 @@
-import { Context, Get, HttpResponseOK } from '@foal/core';
+import { Context, Get, HttpResponse, HttpResponseOK } from '@foal/core';
 
 export class ApiController {
-
-  @Get('/')
-  index(ctx: Context) {
-    return new HttpResponseOK('Hello world!');
-  }
-
+    @Get('/')
+    index(ctx: Context): HttpResponse {
+        return new HttpResponseOK('Hello world!');
+    }
 }
