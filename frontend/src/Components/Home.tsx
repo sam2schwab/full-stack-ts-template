@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 
 function Home(): React.ReactElement {
     return (
-        <div className="app">
+        <div className="app w-100">
             <header className="app-header">
                 <img src={logo} className="app-logo" alt="logo" />
                 <p>

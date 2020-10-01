@@ -1,16 +1,25 @@
 # Added Stuff During Setup(By Samuel)
 
-- Typescript
-- axios
-- eslint
-- prettier
-- recoil
-- stylelint
+-   Typescript
+-   axios
+-   eslint
+-   prettier
+-   recoil
+-   stylelint
+-   Formik
+-   yup
+-   React Select
+-   react-router
+-   Bootstrap (react-bootstrap)
+-   React Icons
+-   React Query
+-   Sass support (node-sass)
 
 stylelint and eslint (which includes prettier) are run on save if the right vscode extensions are installed
 They are also run on commit and prevent commits containing lint errors
 
 # Original Content (from Create React App)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -55,4 +64,3 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-
