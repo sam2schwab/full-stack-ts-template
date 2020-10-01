@@ -12,16 +12,11 @@ services:
     labels:
       - traefik.http.routers.backend.rule=PathPrefix(`/api`)
       - traefik.http.services.backend.loadbalancer.server.port=3001
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile-backend
     environment:
       - NODE_ENV=${NODE_ENV:-development}
-      - PGUSER=${PGUSER:-postgres}
-      - PGHOST=${PGHOST:-database}
-      - PGPASSWORD=${PGPASSWORD:-!cYGyYSC_%6pDa7/}
-      - PGDATABASE=${PGDATABASE:-postgres}
-      - PGPORT=${PGPORT:-5432}
     volumes:
       - ./backend:/home/node/backend
       - ./common:/home/node/common
@@ -31,7 +26,7 @@ services:
     labels:
       - traefik.http.routers.frontend.rule=PathPrefix(`/`)
       - traefik.http.services.frontend.loadbalancer.server.port=3000
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile-frontend
     tty: true
