@@ -1,22 +1,14 @@
 {
-  "compilerOptions": {
-    "outDir": "build",
-    "sourceMap": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "strict": true,
-    "noImplicitAny": true,
-    "strictPropertyInitialization": false,
-    "module": "commonjs",
-    "target": "es2017",
-    "rootDir": "src",
-    "lib": [
-      "es2017",
-      "dom"
-    ]
-  },
-  "include": [
-    "src/**/*.ts",
-    "../common/src/**/*.ts"
-  ]
+    "compilerOptions": {
+        "outDir": "build",
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "noImplicitAny": true,
+        "strictPropertyInitialization": false,
+        "module": "commonjs",
+        "target": "es2017",
+        "lib": ["es2017", "dom"]
+    },
+    "include": ["src/**/*.ts", "../common/src/**/*.ts"]
 }
